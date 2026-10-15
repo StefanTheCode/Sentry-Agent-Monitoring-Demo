@@ -1,0 +1,20 @@
+# Move me to .github/workflows/agent-runs.yml when you push to GitHub.
+name: agent-runs
+on:
+  workflow_dispatch:
+  # schedule:
+  #   - cron: "0 * * * *"   # uncomment for hourly runs
+jobs:
+  run-agent:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+      - name: Run the agent (batch)
+        working-directory: demo/OrderSupportAgent
+        env:
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+        run: dotnet run -- batch

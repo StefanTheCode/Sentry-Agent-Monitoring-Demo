@@ -426,3 +426,12 @@ FodyWeavers.xsd
 
 # Official VS Code C# Dev Kit Extension exclusion
 #*.lscache
+
+# --- OrderSupportAgent ---
+.vs/
+bin/
+obj/
+.env
+secrets.local.json
+*.user
+_secrets_patch.zip
